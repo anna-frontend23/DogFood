@@ -1,0 +1,65 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+    background: rgb(253, 225, 14);
+    width: 100%;
+    gap: 30px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    font-size: 30px;
+    padding: 20px;
+}
+
+.text {
+    display: flex;
+    gap: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.copywright {
+    font-size: 10px;
+    color: silver;
+    color: grey;
+}
+
+.copywrightText {
+    font-size: 10px;
+    color: silver;
+    margin-left: 3px;
+    color: grey;
+}
+
+.columns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    font-size: 15px;
+    padding: 20px;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-style: 15px;
+}
+
+.contactsPhone {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.socialMedia {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    color: grey;
+}

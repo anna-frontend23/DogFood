@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.logOutBtn {
+    
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+}
+.logOutBtn:hover {
+    cursor: pointer;
+}
