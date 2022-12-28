@@ -1,3 +1,4 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../components/Api/Api";
@@ -9,8 +10,7 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const navigate = useNavigate();
 
-const sendForm = (e) => {
-    e.preventDefault();
+const sendForm = () => {
     const body = {
         email,
         password,
@@ -23,7 +23,6 @@ const sendForm = (e) => {
         return res.json()
     })
     .then(data => {
-        console.log(data)
         navigate('../signIn')
     })
     .catch(err => {
@@ -33,10 +32,28 @@ const sendForm = (e) => {
     
 }
 
+const {mutate} = useMutation(sendForm, {
+    onSuccess: () => {
+        setEmail('');
+        setPassword('');
+    }
+})
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    mutate( {
+        onSuccess: () => {
+            navigate('/catalogue')
+        }
+    }
+    );
+    
+}
+
     return (
         <>
         <div className={signUpStyles.arrow}><Link to="/signIn"><i className="fa-solid fa-arrow-left"></i></Link></div>
-        <form className={signUpStyles.container} onSubmit={sendForm}>
+        <form className={signUpStyles.container} onSubmit={handleSubmit}>
             
             <h2>Регистрация</h2>
             <div className={signUpStyles.fields}>

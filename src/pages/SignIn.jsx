@@ -2,6 +2,7 @@ import signInStyles from './signIn.module.scss'
 import { api } from "../components/Api/Api";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { useMutation} from '@tanstack/react-query';
 
 export const SignIn = () => {
 
@@ -9,43 +10,36 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("")
 const navigate = useNavigate();
 
-const sendForm = (e) => {
-    e.preventDefault();
+const sendForm = () => {
+    
     const body = {
         email,
         password
     }
     api.signIn(body)
-        .then(res => {
-            if (res.status === 401) {
-                throw Error("Неправильный логин или пароль")
-            } else if (res.status === 404) {
-                throw Error("Пользователь не найден")
-            }
-            return res.json()
+        .then((res) => res.json())
+        .then((data) => {
+            localStorage.setItem("user.id", data.data._id);
+            localStorage.setItem("token", data.token);
         })
-        .then(data => {
-                localStorage.setItem("user.id", data.data._id);
-                localStorage.setItem("token", data.token);
-                setEmail("");
-                setPassword("");
-                navigate('/catalogue');
-            })
-        .catch((err) => {
-            console.log(err)
-            if (err.message == "Неправильный логин или пароль") {
-                    alert("Неправильный логин или пароль")
-                } else if (err.message == "Пользователь не найден") {
-                    alert("Пользователь не найден")
-                }
-        })
-        
-        
+}     
+
+const {mutate} = useMutation(sendForm, {
+    onSuccess: () => {
+        setEmail('');
+        setPassword('');
+    }
+})
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    mutate();
+    navigate('/catalogue');
 }
 
     return (
         <>
-    <form className={signInStyles.container} onSubmit={sendForm}>
+    <form className={signInStyles.container} onSubmit={handleSubmit}>
         <h2>Авторизация</h2>
         <div className={signInStyles.fields}>
         <input className={signInStyles.input}
