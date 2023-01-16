@@ -2,8 +2,12 @@ import signInStyles from './signIn.module.scss'
 import { api } from "../components/Api/Api";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setToken } from '../redux/slices/tokenSlice';
+
 
 export const SignIn = () => {
+const dispatch = useDispatch()
 
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("")
@@ -25,10 +29,11 @@ const sendForm = (e) => {
             return res.json()
         })
         .then(data => {
-                localStorage.setItem("user.id", data.data._id);
+                //localStorage.setItem("user.id", data.data._id);
                 localStorage.setItem("token", data.token);
                 setEmail("");
                 setPassword("");
+                dispatch(setToken(data.token))
                 navigate('/catalogue');
             })
         .catch((err) => {

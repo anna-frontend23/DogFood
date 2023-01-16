@@ -7,9 +7,9 @@ import cardsStyles from './catalogue.module.scss'
 export const Catalogue = () => {
 const [products, setProducts] = useState([]);
 
-    async function catalogue() {
+    async function catalogue(token) {
        try {
-        const response = await api.getAllProducts();
+        const response = await api.getAllProducts(token);
         const data = await response.json();
         setProducts(data.products)
         //console.log(data.products)
@@ -20,7 +20,8 @@ const [products, setProducts] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-        catalogue()
+            const token = localStorage.getItem('token')
+        catalogue(token)
         }
     }, [])
     
@@ -29,7 +30,7 @@ const [products, setProducts] = useState([]);
         <>
         <h1>Каталог товаров</h1>
         <div className={cardsStyles.cards}>
-            {products.map((el, i) => <Card key={"card_"+i} text={el.name} like={(i + 1) % 2 === 0} picture={el.pictures} price={el.price} stock={el.stock}/>)}
+            {products?.map((el, i) => <Card key={"card_"+i} text={el.name} like={(i + 1) % 2 === 0} picture={el.pictures} price={el.price} stock={el.stock}/>)}
        </div>
         </>
     )

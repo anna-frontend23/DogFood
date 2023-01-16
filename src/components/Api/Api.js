@@ -1,7 +1,7 @@
 
 class Api {
-    constructor(token) {
-        this.token = localStorage.getItem('token');
+    constructor() {
+        this.token = localStorage.getItem("token");
         this.id = localStorage.getItem("user.id");
         this.path = "https://api.react-learning.ru";
         this.group = "sm8"
@@ -9,10 +9,10 @@ class Api {
     
 //методы 
 
-getAllProducts() {
+getAllProducts(token) {
     return fetch(`${this.path}/products`, {
         headers: {
-            "authorization": `Bearer ${this.token}`
+            "authorization": `Bearer ${token}`
         }
     })
 }
@@ -47,6 +47,13 @@ userDetail() {
     })
 }
 
+searchProduct(request) {
+    return fetch(`${this.path}/products/search?query=${request}`, {
+        headers: {
+            "authorization": `Bearer ${this.token}`
+        }
+    })
+}
 
 
 
