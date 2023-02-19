@@ -9,15 +9,37 @@
         gap: 1em;
         justify-content: center;
         align-items: center;
+        height: 320px;
+        width: 100%;
     }
-    .card__heart {
+
+.card:hover {
+    cursor: pointer;
+}
+
+.card__heart {
         position: absolute;
         top: .5em;
         right: 1em;
         color: crimson;
-    }
+}
 
-    .img {
+.img {
         max-height: 100px;
         max-width: 110px;
-    }
+}
+
+// .price_cart_block {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 1em;
+//     margin-bottom: 10px;
+// }
+
+.cartIcon {
+    position: absolute;
+    bottom: .5em;
+    right: 1em;
+    font-size: 20px;
+}

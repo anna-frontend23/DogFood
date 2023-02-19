@@ -1,6 +1,6 @@
 import userFormStyles from "./userDetailForm.module.scss"
 
-export const UserDetailForm = ({name, avatar, email, description}) => {
+export const UserDetailForm = ({name, avatar, email, description, id}) => {
 
     return (
         <>

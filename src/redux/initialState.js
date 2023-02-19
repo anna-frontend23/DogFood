@@ -1,4 +1,8 @@
 
 export const initialState = {
-    token: ''
+    token: '',
+    search: '',
+    products: [],
+    comments: [],
+    user: []
 }

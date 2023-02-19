@@ -1,0 +1,36 @@
+
+.review_block {
+    display: flex;
+    flex-direction: column;
+    border: 0.5px silver;
+    border-style: solid none;
+    padding: 15px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stars {
+    color: rgb(253, 225, 14)
+    
+}
+
+.author {
+    font-style: italic;
+    font-weight: bold;
+    color: silver;
+}
+
+.icon {
+    font-size: 15px;
+}
+.icon:hover {
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "../initialState";
 
 const loadFromLS = () => {
@@ -13,16 +13,6 @@ export const tokenSlice = createSlice({
         setToken(state, action) {
             return state = action.payload
         }
-        // setToken: {
-        //     reducer(state, action) {
-        //         return state = action.payload
-        //     },
-        //     prepare(token) {
-        //         return {
-        //             payload: {token}
-        //         }
-        //     }
-        // }
     }
 })
 

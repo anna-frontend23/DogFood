@@ -6,9 +6,6 @@ import { Main } from './components/Main/Main';
 
 function App() {
 
-  
-  // const [user, setUser] = useState("");
-  
   return (
     <div className="container">
     <Header />

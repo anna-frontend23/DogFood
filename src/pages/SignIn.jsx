@@ -29,7 +29,6 @@ const sendForm = (e) => {
             return res.json()
         })
         .then(data => {
-                //localStorage.setItem("user.id", data.data._id);
                 localStorage.setItem("token", data.token);
                 setEmail("");
                 setPassword("");

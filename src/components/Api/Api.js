@@ -9,10 +9,10 @@ class Api {
     
 //методы 
 
-getAllProducts(token) {
+getAllProducts() {
     return fetch(`${this.path}/products`, {
         headers: {
-            "authorization": `Bearer ${token}`
+            "authorization": `Bearer ${this.token}`
         }
     })
 }
@@ -47,17 +47,80 @@ userDetail() {
     })
 }
 
-searchProduct(request) {
-    return fetch(`${this.path}/products/search?query=${request}`, {
+productInfo(id) {
+    return fetch(`${this.path}/products/${id}`, {
+        headers: {
+            "authorization": `Bearer ${this.token}`
+        }
+    }
+)}
+
+getUserInfo(id) {
+    return fetch(`${this.path}/v2/${this.group}/users/${id}`, {
         headers: {
             "authorization": `Bearer ${this.token}`
         }
     })
 }
 
+addProduct(body) {
+    return fetch(`${this.path}/products`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": `Bearer ${this.token}`
+            },
+        body: JSON.stringify(body)
+    })
+}
 
+editProduct(id, body) {
+    return fetch(`${this.path}/products/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": `Bearer ${this.token}`
+            },
+        body: JSON.stringify(body)
+    })
+}
 
+deleteProduct(id) {
+    return fetch(`${this.path}/products/${id}`, {
+        method: "DELETE",
+        headers: {
+            "authorization": `Bearer ${this.token}`
+            }
+    })
+}
 
+getProductComments(id) {
+    return fetch(`${this.path}/products/review/${id}`, {
+        headers: {
+            "authorization": `Bearer ${this.token}`
+        }
+    })
+}
+
+addComment(body, id) {
+    return fetch(`${this.path}/products/review/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": `Bearer ${this.token}`
+            },
+        body: JSON.stringify(body)
+    })
+}
+
+deleteComment(postId, commentId) {
+    return fetch(`${this.path}/products/review/${postId}/${commentId}`, {
+        method: "DELETE",
+        headers: {
+            "authorization": `Bearer ${this.token}`
+            }
+    })
+}
 
 }
 

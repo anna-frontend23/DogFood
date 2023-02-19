@@ -2,4 +2,19 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2em;
+    
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add {
+    font-size: 25px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
