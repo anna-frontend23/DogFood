@@ -7,7 +7,7 @@ import { api } from "../Api/Api";
 import addCommentStyles from './addComment.module.scss'
 
 export const AddComment = () => {
-
+const token = localStorage.getItem('token')
 const dispatch = useDispatch()
 const {id} = useParams()
 
@@ -28,11 +28,10 @@ const {id} = useParams()
               .required('Обязательно')
         })}
         onSubmit={(values, onSubmitProps) => {
-            api.addComment(values, id)
+            api.addComment(values, id, token)
             .then(response => response.json())
             .then(data => {
               if(!data.error){
-                //console.log(data)
                 let comment = data.reviews[data.reviews.length-1]
                 let newComment = {
                     ...comment,

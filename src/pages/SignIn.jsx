@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setToken } from '../redux/slices/tokenSlice';
 
 
+
 export const SignIn = () => {
 const dispatch = useDispatch()
 
@@ -30,6 +31,7 @@ const sendForm = (e) => {
         })
         .then(data => {
                 localStorage.setItem("token", data.token);
+                
                 setEmail("");
                 setPassword("");
                 dispatch(setToken(data.token))

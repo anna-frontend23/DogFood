@@ -10,7 +10,7 @@ export const AddProduct = () => {
 
  const navigate = useNavigate()
  const dispatch = useDispatch()
-
+ 
     return (
 <>
 <Formik
@@ -28,21 +28,25 @@ export const AddProduct = () => {
           .required('Обязательно'),
         price: Yup.number()
           .positive()
-          .min(1, 'Цена не может быть меньше 0')
+          .min(1, 'Цена не может быть меньше 1')
           .required('Обязательно'),
         stock: Yup.number()
           .positive()
-          .min(0, 'Цена не может быть меньше 0'),
+          .min(0, 'Кол-во не может быть меньше 0'),
         description: Yup.string()
           .min(10, 'Введите описание товара')
           .required('Обязательно'),
         discount: Yup.number()
           .positive()
-          .min(0, 'Скидка не может быть меньше 0')
+          .min(0, 'Скидка не может быть меньше 0%')
+          .max(100, 'Скидка не может быть больше 100%'),
+        pictures: Yup.string()
+        .required('Обязательно')
       })
     }
     onSubmit={(values, onSubmitProps) => {
-        api.addProduct(values)
+      const token = localStorage.getItem('token')
+        api.addProduct(values, token)
           .then(response => response.json())
           .then(data => {
             //console.log(data)
@@ -70,7 +74,7 @@ export const AddProduct = () => {
     <ErrorMessage name='discount'/>
 
     <Field className={addProductForm.field} name='pictures' placeholder='URL фото' type='text'/>
-
+    <ErrorMessage name='pictures'/>
     
     <button className={addProductForm.addBtn} type='submit'>Добавить товар</button>
 </Form>

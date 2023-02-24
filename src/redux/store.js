@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { cartReducer } from "./slices/cartSlice";
 import { commentsReducer } from "./slices/commentsSlice";
+import { likesReducer } from "./slices/likesSlice";
 import { productsReducer } from "./slices/productsSlice";
 import { searchReducer } from "./slices/searchSlice";
 import { tokenReducer } from "./slices/tokenSlice";
@@ -11,6 +13,8 @@ export const store = configureStore({
     search: searchReducer,
     products: productsReducer,
     comments: commentsReducer,
-    user: userReducer
+    likes: likesReducer,
+    user: userReducer,
+    cart: cartReducer
    } 
 })

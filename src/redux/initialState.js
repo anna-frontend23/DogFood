@@ -4,5 +4,6 @@ export const initialState = {
     search: '',
     products: [],
     comments: [],
+    likes: [],
     user: []
 }

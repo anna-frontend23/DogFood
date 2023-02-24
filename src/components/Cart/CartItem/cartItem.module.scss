@@ -1,0 +1,64 @@
+.item {
+        border-bottom: 1px solid  rgb(215, 213, 213);
+        
+        display: grid;
+        grid-template-columns: 20% 40% 15% 15% 10%;
+        
+        align-items: center;
+        gap: 20px;
+        height: 110px;
+        width: 900px;
+        margin-bottom: 15px;
+}
+.img {
+    max-height: 70px;
+    max-width: 80px;
+    margin: 10px;
+}
+
+.name {
+    padding: 10px;
+    height: fit-content;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.trash {
+    color: silver
+}
+.trash:hover {
+    cursor: pointer;
+}
+
+.quantityBtns {
+    display: flex;
+    gap: 0; 
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    padding: 8px;
+    text-align: center;
+
+    .incrDcrBtns {
+        background-color: rgb(253, 225, 14);
+        width: 20px;
+        height: 20px;
+        border: 1px solid silver;
+        font-size: 15px;
+        padding: 0;
+        text-align: center;
+    }
+    .incrDcrBtns:hover {
+        cursor: pointer;
+    }
+
+    .quantity {
+        margin: 0;
+        padding: 0 5px;
+        width: 22px;
+        align-self: center;
+        text-align: center;
+    }
+}
+   
+

@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+   
     background: rgb(253, 225, 14);
     width: 100%;
     gap: 30px;
@@ -11,6 +12,9 @@
     display: flex;
     gap: 10px;
     font-size: 30px;
+}
+.logo:hover {
+    cursor: pointer;
 }
 
 .text {

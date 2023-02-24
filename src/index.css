@@ -16,7 +16,7 @@ code {
 .container {
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 3fr 2fr;
-  width: auto;
+  grid-template-rows: 100px auto 150px;
+ 
 }
 

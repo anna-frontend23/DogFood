@@ -11,6 +11,8 @@ import { Product } from './pages/Product';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Favourites } from './pages/Favourites';
+import { Cart } from './pages/Cart';
 
 
 const queryClient = new QueryClient()
@@ -31,6 +33,14 @@ const myRouter = createBrowserRouter([
       {
         path: 'catalogue',
         element: <Catalogue />
+      },
+      {
+        path: 'favourites',
+        element: <Favourites/>
+      },
+      {
+        path: 'cart',
+        element: <Cart/>
       },
       {
         path: 'userDetail',

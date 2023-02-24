@@ -15,6 +15,7 @@ const [modalActive, setModalActive] = useState(false)
 const signOut = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
+        localStorage.removeItem('group')
         navigate('/signIn')
     }
     

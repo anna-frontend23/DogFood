@@ -10,21 +10,31 @@ import {AddProduct} from '../components/Forms/AddProduct'
 import { getUserInfo } from "../redux/slices/userSlice"
 
 
+
+
+
+
 export const Catalogue = () => {
 
 const token = localStorage.getItem('token')
 let searchValue = useSelector((store) => store.search)
 let products = useSelector((store) => store.products)
+
+
 const [modalActive, setModalActive] = useState(false)
 
+
 const dispatch = useDispatch()
+
 
     async function catalogue(token) {
        try {
             const response = await api.getAllProducts(token);
             const data = await response.json();
+            
             let products = data.products.filter(el => el.name.toLowerCase().includes(searchValue.toLowerCase()))
             dispatch(getProducts(products))
+
        } catch (error) {
         console.log(error)
        } 
@@ -36,9 +46,10 @@ const dispatch = useDispatch()
         }
     }, [searchValue])
 
-    async function userDetail() {
+    async function userDetail(token) {
         try {
-            const response = await api.userDetail();
+            
+            const response = await api.userDetail(token);
             const data = await response.json();
             //console.log(data)
             dispatch(getUserInfo(data))
@@ -47,11 +58,14 @@ const dispatch = useDispatch()
         }
     }
 
+
     useEffect(() => {
         if (token) {
-            userDetail()
+            userDetail(token)
             }
     }, [])
+
+    
 
 
     return(
@@ -79,7 +93,7 @@ const dispatch = useDispatch()
              
             <h1>Каталог товаров</h1>
             <div className={cardsStyles.cards}>
-            {products.map((el, i) => <Card key={"card_"+i} id={el._id} text={el.name} like={(i + 1) % 2 === 0} picture={el.pictures} price={el.price} />)}
+            {products.map((el, i) => <Card key={"card_"+i} id={el._id} text={el.name} picture={el.pictures} price={el.price} stock={el.stock}/>)}
             </div>
         </>
 

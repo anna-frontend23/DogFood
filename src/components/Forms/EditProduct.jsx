@@ -9,13 +9,13 @@ import editProductStyles from './editProduct.module.scss'
 
 
 export const EditProduct = ({product}) => {
-
+  
 const dispatch = useDispatch()
 const id = product._id
 
-async function handler(values) {
+async function handler(values, token) {
     try {
-        const response = await api.editProduct(id, values)
+        const response = await api.editProduct(id, values, token)
         const data = await response.json()
         //console.log(data)
         dispatch(editProduct(data))
@@ -55,7 +55,8 @@ async function handler(values) {
     }
     
     onSubmit={(values) => {
-        handler(values)
+      const token = localStorage.getItem('token')
+        handler(values, token)
     }}>
 
 <Form className={editProductStyles.editForm}>

@@ -11,25 +11,31 @@ import { deleteProduct } from '../redux/slices/productsSlice'
 import { getProductComments } from "../redux/slices/commentsSlice"
 import productStyles from './product.module.scss'
 import { AddComment } from "../components/Forms/AddComment"
+import { deleteLike, setLike } from "../redux/slices/likesSlice"
+import { addToCart } from "../redux/slices/cartSlice"
 
 export const Product = () => {
     const user = useSelector((store) => store.user)
     const comments = useSelector((store) => store.comments)
+    const likes = useSelector((store) => store.likes)
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const [showReviews, setShowReviews] = useState(false)
     const [modalActive, setModalActive] = useState(false)
+
     const {id} = useParams()
 
     const product = useSelector((store) => {
         const currentProduct = store.products.find((el) => el._id === id)
         return currentProduct
     })
-    
-const {name, pictures, price, description, author} = product
+   
+const {name, pictures, price, description, author, stock} = product
 
-const getProductCommentsFn = (id) => {
-    api.getProductComments(id)
+const getProductCommentsFn = (id, token) => {
+    api.getProductComments(id, token)
     .then(res => res.json())
     .then(data => {
         if(!data.error) {
@@ -38,13 +44,13 @@ const getProductCommentsFn = (id) => {
     })
 }
 useEffect(() => {
-    getProductCommentsFn(id)
+    getProductCommentsFn(id, token)
  }, [])
 
 
 
 const productFn = async () => {
-        let response = await api.productInfo(id)
+        let response = await api.productInfo(id, token)
         let data = await response.json()
         return data
     }
@@ -65,8 +71,8 @@ const {
 }
 
 
-const deleteProductFn = (id) => {
-        api.deleteProduct(id)
+const deleteProductFn = (id, token) => {
+        api.deleteProduct(id, token)
         .then(res => res.json())
         .then(data => {
             if (!data.error) {
@@ -77,6 +83,33 @@ const deleteProductFn = (id) => {
         
 }
 
+const setLikeFn = (e, id, token) => {
+    e.stopPropagation()
+    dispatch(setLike(product))
+    api.setLike(id, token)
+        .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                console.log(data.error)
+            } 
+        })
+}
+
+const deleteLikeFn = (e, id, token) => {
+    e.stopPropagation()
+    dispatch(deleteLike(product))
+    api.deleteLike(id, token)
+    .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                console.log(data.error)
+            }})
+}
+
+const addToCartFn = (e) => {
+    e.stopPropagation()
+    dispatch(addToCart({id, name, pictures, price, stock}))
+}
 
 return (
     <>
@@ -100,16 +133,19 @@ return (
 
         <div className={productStyles.sidebar}>
             <span className={productStyles.price}>{price} руб.</span>
-            <button className={productStyles.cartBtn}>В корзину</button>
-            <span className={productStyles.favourite}><i className="fa-regular fa-heart"></i>В избранное</span>
+            <button className={productStyles.cartBtn} onClick={addToCartFn}>В корзину</button>
+            {likes.find((el) => el._id === id)
+                ? <span className={productStyles.favourite}><i className="fa-solid fa-heart" onClick={(e) => deleteLikeFn(e, id, token)}></i>В избранном</span>
+                : <span className={productStyles.favourite}><i className="fa-regular fa-heart" onClick={(e) => setLikeFn(e, id, token)}></i>В избранное</span>
+            }
 
             <div className={productStyles.delivery}>
-            <i class="fa-solid fa-truck"></i>
+            <i className="fa-solid fa-truck"></i>
             <span className={productStyles.sidebar_text}><h4 className={productStyles.h4}>Доставка по всему Миру! </h4><br/> Доставка курьером - от 399 руб. <br/> Доставка в пункт выдачи - от 199 руб.</span>
             </div>
 
             <div className={productStyles.guarantee}>
-            <i class="fa-solid fa-medal"></i>
+            <i className="fa-solid fa-medal"></i>
             <span className={productStyles.sidebar_text}><h4 className={productStyles.h4}>Гарантия качества!</h4> <br /> Если Вам не понравилось качество нашей продукции, мы вернем деньги, либо сделаем все возможное, чтобы удовлетворить Ваши нужды.</span>
             </div>
         </div>

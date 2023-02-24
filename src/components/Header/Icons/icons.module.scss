@@ -5,3 +5,22 @@
     font-size: 20px;
     
 }
+
+.icon:hover {
+    cursor: pointer;
+}
+
+.cart {
+    position: relative;
+    padding: 5px;
+}
+.total {
+    position: absolute;
+    bottom: 1px;
+    right: 0.5px;
+   font-size: 10px;
+   border: 1px solid black;
+   border-radius: 80%;
+   background-color: #fff;
+   padding: 2px;
+}

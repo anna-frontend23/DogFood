@@ -11,7 +11,7 @@ const [name, setName] = useState('')
 const user = useSelector((store) => store.user)
 const dispatch = useDispatch()
 const {id} = useParams()
-
+const token = localStorage.getItem('token')
 
 const setRating = (rating) => {
     let stars = []
@@ -21,8 +21,8 @@ const setRating = (rating) => {
     return stars
 }
 
-async function getUserName(id) {
-    let response = await api.getUserInfo(id)
+async function getUserName(id, token) {
+    let response = await api.getUserInfo(id, token)
     let result = await response.json()
     let name = result.name
     setName(name)
@@ -30,12 +30,12 @@ async function getUserName(id) {
  }
 
  useEffect(() => {
-    getUserName(author._id)
+    getUserName(author._id, token)
  }, [])
 
- async function deleteCommentFn(id, reviewId) {
+ async function deleteCommentFn(id, reviewId, token) {
     try {
-       const response = await api.deleteComment(id, reviewId)
+       const response = await api.deleteComment(id, reviewId, token)
        const data = await response.json()
        dispatch(deleteComment(reviewId))
     } catch (error) {
@@ -54,7 +54,7 @@ async function getUserName(id) {
     <div className={productReview.text}>
     <span>{text} </span>
     {author && author._id === user._id &&
-               <div className={productReview.icon}><i className="fa-solid fa-trash-can" onClick={() => deleteCommentFn(id, reviewId)}></i></div>
+               <div className={productReview.icon}><i className="fa-solid fa-trash-can" onClick={() => deleteCommentFn(id, reviewId, token)}></i></div>
                }
     </div>
     </div>
