@@ -1,4 +1,47 @@
-# Getting Started with Create React App
+### :pencil2: О проекте
+
+DogFood - это интернет-магазин товаров для собак. 
+
+---
+
+### :mag_right: Возможности
+- Регистрация.
+
+<img width="600" alt="Регистрация" src="https://user-images.githubusercontent.com/111277973/229758545-8d4e6113-6e5a-4157-a00a-c0483b7566ae.png">
+
+- Авторизация.
+
+<img width="600" alt="Авторизация" src="https://user-images.githubusercontent.com/111277973/229758769-0a4bf4ba-0032-47d4-9dc3-34dad283f657.png">
+
+- Просмотр каталога с товарами.
+
+<img width="600" alt="Каталог" src="https://user-images.githubusercontent.com/111277973/229758825-98a12aa9-31d2-4df7-8b9b-29ac863ef8ac.png">
+
+- Поиск товаров.
+
+![Поиск](https://user-images.githubusercontent.com/111277973/229759399-351dbc9b-1fe4-47c3-8265-f084a5fe6267.gif)
+
+- Просмотр карточки одного товара (с возможностью редактировать и удалять товары, созданные пользователем, а также добавлять и просматривать отзывы).
+
+![Страница товара](https://user-images.githubusercontent.com/111277973/229758982-2bab4fe6-1b01-405e-a2ba-dee21f26fa1e.gif)
+
+- Добавление товара в избранное.
+
+![Добавление в избранное](https://user-images.githubusercontent.com/111277973/229759254-9f1d50a9-cb74-4afa-b956-f4140302cfca.gif)
+
+- Добавление товара в корзину.
+
+![Добавление в корзину](https://user-images.githubusercontent.com/111277973/229759342-99500166-d9f7-47ee-8fb6-3f5f060ea200.gif)
+
+- Просмотр личного профиля с возможностью выйти.
+<img width="600" alt="Профиль пользователя" src="https://user-images.githubusercontent.com/111277973/229759486-3c1c4d2f-2183-460f-8a0a-3a558be2e2bd.png">
+
+---
+
+
+
+
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +111,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-->
