@@ -38,6 +38,13 @@ DogFood - это интернет-магазин товаров для соба�
 
 ---
 
+### :hammer_and_wrench: Технологии
+- React
+- React Router
+- Redux Toolkit
+- Formik
+- Font Awesome
+- Tanstack Query
 
 
 
